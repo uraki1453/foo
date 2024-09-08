@@ -1,0 +1,30 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Results" %>
+
+<h1>Results</h1>
+
+<div id="results">
+  <% @results.each do |result| %>
+    <%= render result %>
+    <p>
+      <%= link_to "Show this result", result %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New result", new_result_path %>
+
+<%= line_chart [
+    {name: "収縮期血圧", data:[["22歳",122],["32歳",134],["33歳",144],["34歳",134],["35歳",124],["36歳",134]]},
+    {name: "拡張期血圧",data:[["22歳",94],["32歳",84],["33歳",94],["34歳",84],["35歳",74],["36歳",99]]}, 
+  ],
+  colors: ["green", "#666"],
+  library: {plugins: {annotation: {
+    annotations: {
+      line1: {type: 'line', yMin: '140', yMax: '140', borderColor: 'rgb(255, 99, 99)', borderWidth: 2 },
+      line2: {type: 'line', yMin: '90', yMax: '90', borderColor: 'rgb(255, 99, 99)', borderWidth: 2 }
+    }}}
+  }
+%>
+ 
